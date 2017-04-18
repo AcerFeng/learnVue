@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <meta charset="utf-8">
     <title>test</title>
     <script src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
 </head>
@@ -19,10 +20,98 @@
       <p>{{ answer }}</p>
     </div>
 
+    <div id="app-7">
+        <ol>
+            <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+        </ol>
+    </div>
+
+    <div id="app-8" v-html="rawHtml"></div>
+
+    <div id="app-9">{{ number + 1 }}{{ ok ? 'YES' : 'NO' }}
+{{ message.split('').reverse().join('') }}
+
+{{ message | capitalize }}
+
+</div>
+
+    <a :href="url" id="app-10" @click.prevent="doSomething">{{ url }}</a>
+
+<div id="app-11">
+    <h1 v-if="ok">Yes</h1>
+    <h1 v-else>No</h1>
+    <template v-if="ok">
+      <h1>Title</h1>
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>
+    </template>
+
+    <div v-if="type === 'A'">
+A
+    </div>
+    <div v-else-if="type === 'B'">
+B
+    </div>
+    <div v-else="type === 'C'">
+C
+    </div>
+
+
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your Email">
+    </template>
+    <button @click="changeLoginType">change</button>
+
+
+    
+
+
+</div>
+
+<ul id="example-2">
+  <li v-for="(item, index) of items">
+    {{ parentMessage }} - {{ index }} - {{ item.message }}
+  </li>
+
+  <span v-for="n of 10">{{ n }}</span>
+</ul>
+
+<div id="example-1">
+    <button @click="counter += 1">+1</button>
+    <p>被点击了{{ counter }}次</p>
+    <button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+    <input @keyup.enter="counter += 1">
+</div>
+
+<div id="example-3">
+<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+<label for="jack">Jack</label>
+<input type="checkbox" id="john" value="John" v-model="checkedNames">
+<label for="john">John</label>
+<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+<label for="mike">Mike</label>
+<br>
+<span>Checked names: {{ checkedNames }}</span>
+</div>
+
+
+<div id="example-4">
+    <p>{{ msg }}</p>
+    <input v-model.lazy="msg">
+    <input v-model.number="age" type="number">
+</div>
+
     <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
     <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
     <script type="text/javascript">
-        vm = new Vue({
+        'use strict';
+
+        var vm = new Vue({
             el: '#example',
             data: {
                 message: 'Hello world!'
@@ -70,6 +159,110 @@
                         
                     }, 500)
 
+            }
+        })
+
+        Vue.component("todo-item", {
+            props: ['todo'],
+            template: '<li>{{ todo.text }}</li>'
+        })
+
+        var app7 = new Vue({
+            el: '#app-7',
+            data: {
+                groceryList: [
+                    { text: '蔬菜'},
+                    { text: '奶酪'},
+                    { text: '随便'}
+                ]
+            }
+        })
+
+        var testHtml = new Vue({
+            el: '#app-8',
+            data: {
+                rawHtml: '<h1>nihao</h1>'
+            }
+        });
+
+        var app9 = new Vue({
+            el: '#app-9',
+            data: {
+                number: 23,
+                ok: false,
+                message: 'nihao'
+            },
+            filters: {
+                capitalize: function (value) {
+                    if (!value) {return ''};
+                    value = value.toString();
+                    return value.charAt(0).toUpperCase() + value.slice(1)
+                }
+            }
+        });
+
+        var app10 = new Vue({
+            el: '#app-10',
+            data: {
+                url: 'http:www.baidu.com'
+            },
+            methods: {
+                doSomething: function () {
+                    alert(this.url)
+                }
+            }
+        });
+
+        var app11 = new Vue({
+            el: '#app-11',
+            data: {
+                ok: true,
+                type: 'C',
+                loginType: 'username'
+            },
+            methods: {
+                changeLoginType: function () {
+                    return this.loginType = this.loginType === 'username' ? 'email' : 'username';
+                }
+            }
+        });
+
+        var example2 = new Vue({
+            el: '#example-2',
+            data: {
+                parentMessage: 'testParent',
+                items: [
+                    {message: 'foo'},
+                    {message: "hhaa"}
+                ]
+            }
+        });
+
+        var example1 = new Vue({
+            el: '#example-1',
+            data: {
+                counter: 0
+            },
+            methods: {
+                warn: function (message, event) {
+                    if (event) {event.preventDefault()};
+                    alert(message);
+                }
+            }
+        });
+
+        var example = new Vue({
+            el: '#example-3',
+            data: {
+                checkedNames: []
+            }
+        });
+
+        var example3 = new Vue({
+            el: '#example-4',
+            data: {
+                msg: '',
+                age: 23
             }
         })
     </script>
