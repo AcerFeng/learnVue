@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <div class="router-link">
+      <router-link to="/shoppingCart">购物车</router-link>
+      <router-link to="/address">地址列表</router-link>
+    </div>
     <img src="./assets/logo.png">
     <router-view></router-view>
   </div>
@@ -19,5 +23,31 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#app .router-link {
+  width: 1280px;
+  margin: 0 auto;
+  padding: 0 30px;
+  text-align: center;
+  background: #605f5f;
+  border-radius: 2px;
+  -webkit-box-shadow: 5px 2px 5px #eee;
+  -moz-box-shadow: 5px 2px 5px  #eee;
+  box-shadow: 5px 2px 5px  #eee;
+}
+
+#app .router-link a {
+  display: inline-block;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+#app .router-link a:hover {
+  color: #ee7a23;
 }
 </style>
