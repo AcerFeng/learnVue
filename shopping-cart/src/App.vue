@@ -4,7 +4,6 @@
       <router-link to="/shoppingCart">购物车</router-link>
       <router-link to="/address">地址列表</router-link>
     </div>
-    <img src="./assets/logo.png">
     <router-view></router-view>
   </div>
 </template>

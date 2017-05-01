@@ -28,9 +28,150 @@
     <div class="container">
       <div class="cart">
         <div class="checkout-title"><span>购物车</span></div>
+
+        <div class="item-lsit-wrap">
+          <div class="cart-item">
+            <div class="cart-item-head">
+              <ul>
+                <li>商品信息</li>
+                <li>商品金额</li>
+                <li>总金额</li>
+                <li>编辑</li>
+              </ul>
+            </div>
+
+            <ul class="cart-item-list">
+              <li>
+                <div class="cart-tab-1">
+                  <div class="cart-item-check">
+                    <a href="javascript:;" class="item-check-btn">
+                      <svg class="icon icon-ok"><use xlink:href="#icon-ok"></use></svg>
+                    </a>
+                  </div>
+                  <div class="cart-item-pic"><img src="" alt=""></div>
+                  <div class="cart-item-title">
+                    <div class="item-name"> 产品名 </div>
+                  </div>
+                  <div class="item-include">
+                    <dl>
+                      <dt>赠送：</dt>
+                      <dd>
+                        <div class="partContent">
+                          <div class="left">
+                            <img src="" alt="">
+                          </div>
+                          <div class="right">
+                            <span>partsName</span>
+                          </div>
+                        </div>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+                <div class="cart-tab-2">
+                  <div class="item-price">price</div>
+                </div>
+                <div class="cart-tab-3">
+                  <div class="item-quantity">
+                    <div class="select-self select-self-open">
+                      <div class="quantity">
+                        <a href="javascript:;">-</a>
+                        <a href="javascript:;">+</a>
+                      </div>
+                    </div>
+                    <div class="item-stock">有货</div>
+                  </div>
+                </div>
+                <div class="cart-tab-4">
+                  <div class="item-price-total">392元</div>
+                </div>
+                <div class="cart-tab-5">
+                  <div class="cart-item-operation">
+                    <a href="javascript:;" class="item-edit-btn">
+                      <svg class="icon icon-del"><use xlink:href="#icon-del"></use></svg>
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- footer -->
+        <div class="cart-foot-wrap">
+          <div class="cart-foot-l">
+            <div class="item-all-check">
+              <a href="javascript:;">
+                <span class="item-check-btn">
+                  <svg class="icon icon-ok"><use xlink:href="#icon-ok"></use></svg>
+                </span>
+                <span>全选</span>
+              </a>
+            </div>
+            <div class="item-all-del">
+              <a href="javascript:;" class="item-del-btn">
+                <span>取消全选</span>
+              </a>
+            </div>
+          </div>
+          <div class="cart-foot-r">
+            <div class="item-total">
+              Item total: <span class="total-price">123yun</span>
+            </div>
+            <div class="next-btn-wrap">
+              <router-link to="/address" class="btn btn--red" style="width: 200px">结账</router-link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-
+    <div class="md-modal modal-msg mo-modal-transition" id="showModal">
+      <div class="md-modal-inner">
+        <div class="md-top">
+          <buttton class="md-close">关闭</buttton>
+        </div>
+        <div class="md-content confirm-tips">
+          <p id="cusLanInfo">确认删除此订单信息吗？</p>
+        </div>
+        <div class="btn-wrap col-2">
+          <button class="btn btn--m" id="btnModalConfirm">Yes</button>
+          <button class="btn btn--m btn--red" id="btnModalCancel">No</button>
+        </div>
+      </div>
+    </div>
+    <div class="md-overlay" id="showOverLay"></div>
   </div>
 </template>
+
+
+
+
+
+<style>
+  .quantity input{
+    width: 40px;
+    padding: 5px 10px;
+    text-align: center;
+  }
+  .partContent{
+    width:130px;
+    height: 50px;
+  }
+
+  .partContent .left{
+    float:left;
+    width:50px;
+    height:50px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+  }
+  .partContent .right{
+    float:right;
+    width:65px;
+    height: 50px;
+    margin-left: 10px;
+    cursor:pointer;
+  }
+</style>
