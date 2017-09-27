@@ -105,11 +105,61 @@ C
     <input v-model.lazy="msg">
     <input v-model.number="age" type="number">
 </div>
+<br>
+<div id="come-back1">
+    <p>{{ msg }}</p>
+    <a v-bind:href="url">{{ url }}</a>
+    <a :href="url">{{ url }}</a>
+    <a href="#" v-on:click.prevent="onJump">onJump</a>
+    <a href="https://www.baidu.com" @click="onJump2">onJump2</a>
+    <div v-if="isShow">看我</div>
+    <ul>
+       <li v-for="item of items">{{ item.name }}</li> 
+    </ul>
+    <p>{{ inputValue }}</p>
+    <input type="text" v-model="inputValue">
+    <br>
+    <p>{{ message }}</p>
+    <p>{{ reversedMessage }}</p>
+
+</div>
 
     <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
     <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
     <script type="text/javascript">
         'use strict';
+
+        var cbVM = new Vue({
+            el: '#come-back1',
+            data: {
+                msg: 'hello vue!',
+                message: 'I love you',
+                url: 'www.baidu.com',
+                isShow: false,
+                items: [
+                    {
+                        name: 'name1',
+                    },
+                    {
+                        name: 'name2',
+                    }
+                ],
+                inputValue: 'nihaoaahahahakdlfjasklfjsal',
+            },
+            methods: {
+                onJump: function () {
+                    alert('you can\'t jump');
+                },
+                onJump2: function () {
+                    console.log('hahahahah');
+                }
+            },
+            computed: {
+                reversedMessage: function () {
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        });
 
         var vm = new Vue({
             el: '#example',
